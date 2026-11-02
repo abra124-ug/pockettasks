@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 246 250 250;
+    --surface: 255 255 255;
+    --ink: 16 32 32;
+    --muted: 99 118 118;
+    --line: 226 234 234;
+    --brand: 15 158 153;
+    --brand-dark: 10 122 118;
+    --brand-soft: 224 245 244;
+    --brand-ink: 10 122 118;
+    --accent: 249 115 22;
+    --accent-soft: 255 237 222;
+    --accent-ink: 194 65 12;
+  }
+  .dark {
+    --bg: 10 19 19;
+    --surface: 18 31 31;
+    --ink: 236 245 245;
+    --muted: 143 165 165;
+    --line: 36 54 54;
+    --brand-soft: 16 54 53;
+    --brand-ink: 94 214 208;
+    --accent-soft: 58 35 18;
+    --accent-ink: 251 146 60;
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    overscroll-behavior-y: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+  button, a { touch-action: manipulation; }
+  button { @apply select-none; }
+  input, textarea, select { font: inherit; color: inherit; }
+  input[type='date'] { min-height: 3rem; }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line/70 bg-surface shadow-card;
+  }
+  .btn {
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-2xl px-5 text-[15px] font-semibold transition duration-200 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-60;
+  }
+  .btn-primary { @apply btn bg-brand text-white hover:bg-brand-dark; }
+  .btn-soft { @apply btn bg-brand-soft text-brand-ink; }
+  .btn-danger { @apply btn bg-accent text-white; }
+  .icon-btn {
+    @apply grid h-11 w-11 place-items-center rounded-full text-ink transition duration-200 active:scale-90 active:bg-line/70;
+  }
+  .field {
+    @apply w-full rounded-2xl border border-line bg-surface px-4 py-3 text-[15px] outline-none transition placeholder:text-muted/70 focus:border-brand focus:ring-4 focus:ring-brand/15;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
